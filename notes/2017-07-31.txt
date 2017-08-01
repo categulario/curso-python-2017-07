@@ -1,0 +1,95 @@
+# Hola!
+# python 3.6 <- mejor
+# python 3.5 <- común
+# python 3.4 <- no-tan-mal
+
+# checar versión de python
+$ python --version
+$ python3 --version
+
+# Virtualenv
+$ virtualenv --version # yo tengo 15.1.0 pero no importa demasiado
+# Ubuntu
+apt search virtualenv
+# Mac
+brew install virtualenv # ??? ni idea
+# si brew no funciona podemos usar pip
+pip --version # yo tengo 9.0.1
+
+# Cómo iniciar un nuevo proyecto:
+$ mkdir mi-nuevo-proyecto
+$ cd mi-nuevo-proyecto
+$ git init # no lo olviden, es fundamental ;)
+$ virtualenv env # crea un entorno virtual dentro de la carpeta del proyecto
+# Ahora hay que activar el entorno virtual
+$ source env/bin/activate
+(env) $ pip install requests
+# Salir del entorno virtual
+(env) $ deactivate
+$
+
+# Framework web
+# http://flask.pocoo.org/
+
+# editen requirements.txt
+flask
+
+# Para instalar las dependencias
+(env) $ pip install -r requirements.txt
+
+/
+    env/
+    .gitignore
+    requirements.txt
+    hello.py
+    
+# Hola mundo en flask: hello.py
+# Se importa la clase Flask del paquete flask
+# -*- coding: utf8 -*-
+from flask import Flask
+
+# Creamos una instancia de la clase Flask, inicializada con el nombre del archivo
+app = Flask(__name__)
+
+# Aquí se define la primera ruta
+@app.route("/") # Esto es un decorador, es muy importante
+def hello(): # El nombre de la función se va a guardar como "endpoint" en el router
+    return "Hello World!" # El valor de retorno de la función es lo que se muestra en el navegador
+    
+# Ejecutar el hola mundo
+(env) $ FLASK_APP=hello.py flask run
+
+# Nota sobre apuntadores y referencias
+
+a = [1, 2, 3, 4]
+b = a
+
+b.append(5)
+
+print(a)
+
+# Cómo jugar con el código
+(env) $ python
+>>> 
+(env) $ pip install ipython
+(env) $ env/bin/ipython
+In[1]: 
+
+# Cómo ejecutar archivos python
+(env) $ python miarchivo.py
+
+# ¿Qué son los decoradores?
+def decorador(otrafuncion):
+    def envoltura():
+        print('antes de llamar a la función')
+        valor = otrafuncion()
+        print('después de llamar a la función')
+        return valor
+
+    return envoltura
+
+@decorador
+def f():
+    return 'a'
+
+print(f())
