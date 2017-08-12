@@ -1,7 +1,7 @@
 def decorador(otrafuncion):
-    def envoltura():
+    def envoltura(x, y):
         print('antes')
-        valor = otrafuncion()
+        valor = otrafuncion((x+5), y)
         print('despues')
         return valor
 
